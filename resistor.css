@@ -5,7 +5,7 @@
 .kosong, .kosong2 {height: 48px; float: left;}
 .kosong2 {width: 20px;}
 .kosong {width: 10px;}
-.garis1, .garis2 {padding: 0; margin: 0; width: 70px; border: 1px solid black; position: relative; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%);}
+.garis1, .garis2 {padding: 0; margin: 0; width: 70px; border: 0.5px solid black; position: relative; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%);}
 .garis1 {float: left;}
 .garis2 {float: right;}
 .merah, .hitam, .coklat, .hijau, .biru, .ungu, .abu {color: white;}
