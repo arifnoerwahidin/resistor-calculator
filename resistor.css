@@ -1,11 +1,11 @@
 #resistor {margin: auto; width: 250px; height: 50px;}
-#box {margin: auto; width: 100px; height: 50px; border: 3px solid black; position: relative; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); display: inline-block; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -o-border-radius: 15px;}
-#pita1, #pita2, #pita3, #pita4 {width: 10px; height: 50px; float: left;}
-#pita5, #pita6, #kosong3, #kosong4 {width: 0px; height: 50px; float: left;}
-.kosong, .kosong2 {height: 50px; float: left;}
+#box {margin: auto; width: 100px; height: 50px; border: 1px solid black; position: relative; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); display: inline-block; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -o-border-radius: 15px;}
+#pita1, #pita2, #pita3, #pita4 {width: 10px; height: 48px; float: left;}
+#pita5, #pita6, #kosong3, #kosong4 {width: 0px; height: 48px; float: left;}
+.kosong, .kosong2 {height: 48px; float: left;}
 .kosong2 {width: 20px;}
 .kosong {width: 10px;}
-.garis1, .garis2 {margin: auto; width: 70px; border: 1px solid black; position: relative; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%);}
+.garis1, .garis2 {padding: 0; margin: 0; width: 70px; border: 1px solid black; position: relative; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%);}
 .garis1 {float: left;}
 .garis2 {float: right;}
 .merah, .hitam, .coklat, .hijau, .biru, .ungu, .abu {color: white;}
@@ -23,19 +23,90 @@
 .perak {background: silver;}
 .putih {background: white;}
 .nocolor {background: white;}
-.fadeout, .fadein {max-height: 0; overflow-y: hidden; -webkit-transition: max-height 0.3s ease-in-out; -moz-transition: max-height 0.3s ease-in-out; -o-transition: max-height 0.3s ease-in-out; transition: max-height 0.3s ease-in-out;}
-.fadein {max-height: 50px ;}
-.imgout, .imgin {max-height: 0; overflow-y: hidden; -webkit-transition: max-height 0.3s ease-in-out; -moz-transition: max-height 0.3s ease-in-out; -o-transition: max-height 0.3s ease-in-out; transition: max-height 0.3s ease-in-out;}
-.imgin {max-height: 422px ;}
-.spasibawah {margin-bottom: 5px;}
-input[type="text"], select {width: 130px;}
 a {text-decoration: none;}
 a:link {color: blue;}
 a:hover {color: green;}
-#kalkulator ,#result {text-align: center;}
-#CalAngka, #CalWarna, #label, #opsi {display: table-cell; vertical-align: middle; position: relative;}
-#CalAngka, #CalWarna {width: 350px; height: 400px;}
-#CalAngka {background: #99ccff;}
-#CalWarna {background: pink;}
-#result {clear: both; display: table-cell; position: relative; background: #e6e6e6; padding-top: 5px; padding-bottom: 5px; width: 700px;}
-#label, #opsi {width: 175px;}
+
+.jumbotron {
+	background-color: #cc0000;
+	height: 200px;
+	color: #fff !important;
+	padding: 50px;
+	margin-bottom: 20px;
+}
+
+.navbar {
+	background-color: #cc0000 !important;
+}
+
+.navbar {
+    margin-bottom: 0;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+}
+
+.navbar-brand {
+	font-size: 25px !important;
+	letter-spacing: 0px;
+	vertical-align: middle;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    background-color: #fff !important;
+    color: #cc0000 !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+
+body {
+    font: 400 17px 'Noto Sans', sans-serif;
+    line-height: 1.8;
+    color: #000000;
+    position: relative;
+}
+
+.navbar {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #303030;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    color: #303030;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.navbar-brand {
+    font-family: 'Luckiest Guy', cursive;
+}
+
+footer {
+    background-color: #cc0000;
+    width: 100%;
+    color: #fff;
+}
+
+.row {
+	margin: 0;
+    padding: 0;
+}

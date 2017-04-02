@@ -1,173 +1,271 @@
-<html>
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Kalkulator Cincin Warna Resistor</title>
-	<link rel="stylesheet" type="text/css" href="resistor.css" />
+	<!-- Facebook Open Graph -->
+	<meta property="og:title" content="Aplikasi Penghitung Nilai Hambatan Resistor Berdasarkan Warna" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://resistor.tk" />
+	<meta property="og:image" content="http://resistor.tk/fb-foto.jpg" />
+	<meta property="og:description" content="Hitung Nilai Hambatan Resistor Berdasarkan Warna atau Sebaliknya" />
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="app" />
+	<meta name="twitter:title" content="Aplikasi Penghitung Nilai Hambatan Resistor Berdasarkan Warna"/>
+	<meta name="twitter:url" content="http://resistor.tk" />
+	<meta name="twitter:image" content="http://resistor.tk/fb-foto.jpg" />
+	<meta name="twitter:description" content="Hitung Nilai Hambatan Resistor Berdasarkan Warna atau Sebaliknya" />
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width" intitial-scale="1" maximum-scale="1">
+	<title>Resistor Color Band Calculator</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Noto+Sans" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="resistor.css" >
 </head>
 <body>
-<div id="kalkulator">
-<div id="CalWarna">
-	<h2>Cari Nilai Resistor</h2>
-	<b><label>Resistor</label>
-	<input type="radio" name="jumlahPita" id="4" value="4" onchange="radioKlik(this);" checked="checked" /><label for="4">4 Cincin </label>
-	<input type="radio" name="jumlahPita" id="5" value="5" onchange="radioKlik(this);" /><label for="5">5 Cincin</label>
-	<input type="radio" name="jumlahPita" id="6" value="6" onchange="radioKlik(this);" /><label for="6">6 Cincin</label><br><br></b>
-	<label><b>Cincin 1</b></label>
-	<select class="spasibawah" id="warna1" name="pita1" onchange="gantiWarna(this); hitung();">
-		<option class="putih" value="0">- Pilih Warna -</option>
-		<option class="hitam" value="1">Hitam</option>
-		<option class="coklat" value="2">Coklat</option>
-		<option class="merah" value="3">Merah</option>
-		<option class="orange" value="4">Orange</option>
-		<option class="kuning" value="5">Kuning</option>
-		<option class="hijau" value="6">Hijau</option>
-		<option class="biru" value="7">Biru</option>
-		<option class="ungu" value="8">Ungu</option>
-		<option class="abu" value="9">Abu-abu</option>
-		<option class="putih" value="10">Putih</option>
-	</select>
-	<br><br>
-	<label><b>Cincin 2</b></label>	
-	<select class="spasibawah" id="warna2" name="pita2" onchange="gantiWarna(this); hitung();">
-		<option class="putih" value="0">- Pilih Warna -</option>
-		<option class="hitam" value="1">Hitam</option>
-		<option class="coklat" value="2">Coklat</option>
-		<option class="merah" value="3">Merah</option>
-		<option class="orange" value="4">Orange</option>
-		<option class="kuning" value="5">Kuning</option>
-		<option class="hijau" value="6">Hijau</option>
-		<option class="biru" value="7">Biru</option>
-		<option class="ungu" value="8">Ungu</option>
-		<option class="abu" value="9">Abu-abu</option>
-		<option class="putih" value="10">Putih</option>
-	</select>
-	<div id="lima" class="fadeout">
-	<br>
-	<label><b>Cincin 3</b></label>
-	<select class="spasibawah" id="warna5" name="pita5" onchange="gantiWarna(this); hitung();">
-		<option class="putih" value="0" id="nol5">- Pilih Warna -</option>
-		<option class="hitam" value="1">Hitam</option>
-		<option class="coklat" value="2">Coklat</option>
-		<option class="merah" value="3">Merah</option>
-		<option class="orange" value="4">Orange</option>
-		<option class="kuning" value="5">Kuning</option>
-		<option class="hijau" value="6">Hijau</option>
-		<option class="biru" value="7">Biru</option>
-		<option class="ungu" value="8">Ungu</option>
-		<option class="abu" value="9">Abu-abu</option>
-		<option class="putih" value="10">Putih</option>
-	</select>
-	</div>
-	<br>	
-	<b><label id="pitaWarna3">Cincin 3</label></b>
-	<select class="spasibawah" id="warna3" name="pita3" onchange="gantiWarna(this); hitung();">
-		<option class="putih" value="0">- Pilih Warna -</option>
-		<option class="hitam" value="1">Hitam</option>
-		<option class="coklat" value="2">Coklat</option>
-		<option class="merah" value="3">Merah</option>
-		<option class="orange" value="4">Orange</option>
-		<option class="kuning" value="5">Kuning</option>
-		<option class="hijau" value="6">Hijau</option>
-		<option class="biru" value="7">Biru</option>
-		<option class="ungu" value="8">Ungu</option>
-		<option class="abu" value="9">Abu-abu</option>
-		<option class="putih" value="10">Putih</option>
-		<option class="emas" value="11">Emas</option>
-		<option class="perak" value="12">Perak</option>
-	</select>
-	<br><br>
-	<b><label id="pitaWarna4">Cincin 4</label></b>
-	<select class="spasibawah" id="warna4" name="pita4" onchange="gantiWarna(this); hitung();">
-		<option class="putih" value="0">- Pilih Warna -</option>
-		<option class="coklat" value="2">Coklat</option>
-		<option class="merah" value="3">Merah</option>
-		<option class="hijau" value="6">Hijau</option>
-		<option class="biru" value="7">Biru</option>
-		<option class="ungu" value="8">Ungu</option>
-		<option class="abu" value="9">Abu-abu</option>
-		<option class="emas" value="11">Emas</option>
-		<option class="perak" value="12">Perak</option>
-		<option class="nocolor" value="13">Tak berwarna</option>
-	</select>
-	<div id="enam" class="fadeout">
-	<br>
-	<b><label>Cincin 6</label></b>
-	<select class="spasibawah" id="warna6" name="pita6" onchange="gantiWarna(this); hitung();">
-		<option class="putih" value="0" id="nol5">- Pilih Warna -</option>
-		<option class="hitam" value="1">Hitam</option>
-		<option class="coklat" value="2">Coklat</option>
-		<option class="merah" value="3">Merah</option>
-		<option class="orange" value="4">Orange</option>
-		<option class="kuning" value="5">Kuning</option>
-		<option class="hijau" value="6">Hijau</option>
-		<option class="biru" value="7">Biru</option>
-		<option class="ungu" value="8">Ungu</option>
-		<option class="putih" value="10">Putih</option>
-	</select>
-	</div>
-</div>
-<div id="CalAngka">
-	<h2>Cari Warna Cincin</h2>
-	<div id="label">
-		<b><div class="spasibawah"><label>Nilai Hambatan (&#8486)</label></div></b>
-		<b><div class="spasibawah"><label>Toleransi</label></div></b>
-		<b><div class="spasibawah"><label>Koefisien Suhu</label></div></b>
-	</div>
-	<div id="opsi">
-		= <input type="text" size="10" id="tahanan" onkeyup="reverse();" placeholder="Mis. 2r3, 200, 2k, 4k7" class="spasibawah" /><br>
-		= <select id="toleransi" onchange="reverse();" class="spasibawah" >
-			<option value="0">- Pilih Toleransi -</option>
-			<option value="1">&plusmn; 1 &#37</option>
-			<option value="2">&plusmn; 2 &#37</option>
-			<option value="0.5">&plusmn; 0,5 &#37</option>
-			<option value="0.25">&plusmn; 0,25 &#37</option>
-			<option value="0.1">&plusmn; 0,1 &#37</option>
-			<option value="0.05">&plusmn; 0,05 &#37</option>
-			<option value="5">&plusmn; 5 &#37</option>
-			<option value="10">&plusmn; 10 &#37</option>
-			<option value="20">&plusmn; 20 &#37</option>
-		</select><br>
-		= <select id="koefisien" onchange="reverse();" class="spasibawah" >
-			<option value="0">- Pilih Koefisien -</option>
-			<option value="250">250 ppm/&#176;C</option>
-			<option value="100">100 ppm/&#176;C</option>
-			<option value="50">50 ppm/&#176;C</option>
-			<option value="15">15 ppm/&#176;C</option>
-			<option value="25">25 ppm/&#176;C</option>
-			<option value="20">20 ppm/&#176;C</option>
-			<option value="10">10 ppm/&#176;C</option>
-			<option value="5">5 ppm/&#176;C</option>
-			<option value="1">1 ppm/&#176;C</option>
-		</select><br><b id="coba"></b>
-	</div>
-</div>
-</div>
-<div id="result">
-<b id="hasil">Nilai Hambatan = 0 &#8486, Toleransi 0 &#37</b>
-<br><br>
-Skema Warna Cincin Resistor<br><br>
-<div id="resistor">
-	<div class="garis1"></div>
-	<div id="box">
-		<div class="kosong"></div>
-		<div id="pita1"></div>
-		<div class="kosong"></div>
-		<div id="pita2"></div>
-		<div class="kosong"></div>
-		<div id="pita5"></div>
-		<div id="kosong3"></div>
-		<div id="pita3"></div>
-		<div class="kosong2"></div>
-		<div id="pita4"></div>
-		<div class="kosong"></div>
-		<div id="pita6"></div>
-		<div id="kosong4"></div>
-	</div>
-	<div class="garis2"></div>
-</div>
-	<br><b><a href="javascript:void(0)" onclick="gambarMetu();return false;">Keterangan Tabel Warna</a></b><div id="gambar" class="imgout"><img src="resistor-color-chart.jpg" width= "500px" /></div>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="">resistor.tk</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+      	<li><a href="https://github.com/kurniawanew/aquascape-calculator" target="_blank">SOURCE CODE</a></li>
+        <li><a href="https://github.com/kurniawanew" target="_blank">MY GITHUB</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron">
+	<h1>Resistor Color Band Calculator</h1>
 </div>
 
+<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-8">
+		<ul class="nav nav-tabs nav-justified">
+  			<li class="active"><a data-toggle="tab" data-target="#a" href="#a">Find resistance value from ring color</a></li>
+  			<li><a data-toggle="tab" data-target="#b" href="#b">Find color from resistance value</a></li>
+		</ul>
+
+		<div class="tab-content">
+  			<div id="a" class="tab-pane fade in active">
+    			<h3 class="text-center">Find resistance value from ring color</h3>
+    			<form class="form-horizontal">
+    				<div class="form-group">
+   						<label class="control-label col-sm-6" for="panjang">For Resistor</label>
+   						<div class="col-sm-5">
+   							<label class="radio-inline"><input type="radio" name="jumlahPita" id="4" value="4" checked>4 Band </label>
+   							<label class="radio-inline"><input type="radio" name="jumlahPita" id="5" value="5">5 Band </label>
+   							<label class="radio-inline"><input type="radio" name="jumlahPita" id="6" value="6">6 Band </label>
+   						</div>
+					</div>
+					<div class="form-group">
+ 						<label class="control-label col-sm-6" for="warna1"><b>1<sup>st</sup> Band Color</b></label>
+ 						<div class="col-sm-4">
+							<select class="form-control" id="warna1" name="pita1">
+								<option class="putih" value="0">- Choose Color -</option>
+								<option class="hitam" value="1">Black</option>
+								<option class="coklat" value="2">Brown</option>
+								<option class="merah" value="3">Red</option>
+								<option class="orange" value="4">Orange</option>
+								<option class="kuning" value="5">Yellow</option>
+								<option class="hijau" value="6">Green</option>
+								<option class="biru" value="7">Blue</option>
+								<option class="ungu" value="8">Purple</option>
+								<option class="abu" value="9">Grey</option>
+								<option class="putih" value="10">White</option>
+							</select>
+						</div>
+ 					</div>
+ 					<div class="form-group">
+ 						<label class="control-label col-sm-6" for="warna2"><b>2<sup>nd</sup> Band Color</b></label>
+ 						<div class="col-sm-4">
+							<select class="form-control" id="warna2" name="pita2">
+								<option class="putih" value="0">- Choose Color -</option>
+								<option class="hitam" value="1">Black</option>
+								<option class="coklat" value="2">Brown</option>
+								<option class="merah" value="3">Red</option>
+								<option class="orange" value="4">Orange</option>
+								<option class="kuning" value="5">Yellow</option>
+								<option class="hijau" value="6">Green</option>
+								<option class="biru" value="7">Blue</option>
+								<option class="ungu" value="8">Purple</option>
+								<option class="abu" value="9">Grey</option>
+								<option class="putih" value="10">White</option>
+							</select>
+						</div>
+ 					</div>
+ 					<div id="lima" class="collapse">
+						<div class="form-group">
+							<label class="control-label col-sm-6" for="warna5"><b>3<sup>rd</sup> Band Color</b></label>
+							<div class="col-sm-4">
+								<select class="form-control" id="warna5" name="pita5">
+									<option class="putih" value="0">- Choose Color -</option>
+									<option class="hitam" value="1">Black</option>
+									<option class="coklat" value="2">Brown</option>
+									<option class="merah" value="3">Red</option>
+									<option class="orange" value="4">Orange</option>
+									<option class="kuning" value="5">Yellow</option>
+									<option class="hijau" value="6">Green</option>
+									<option class="biru" value="7">Blue</option>
+									<option class="ungu" value="8">Purple</option>
+									<option class="abu" value="9">Grey</option>
+									<option class="putih" value="10">White</option>
+								</select>
+							</div>
+						</div>
+ 					</div>
+ 					<div class="form-group">
+ 						<label class="control-label col-sm-6" for="warna3" id="pitaWarna3">3<sup>rd</sup> Band Color</label>
+						<div class="col-sm-4">
+							<select class="form-control" id="warna3" name="pita3">
+								<option class="putih" value="0">- Choose Color -</option>
+								<option class="hitam" value="1">Black</option>
+								<option class="coklat" value="2">Brown</option>
+								<option class="merah" value="3">Red</option>
+								<option class="orange" value="4">Orange</option>
+								<option class="kuning" value="5">Yellow</option>
+								<option class="hijau" value="6">Green</option>
+								<option class="biru" value="7">Blue</option>
+								<option class="ungu" value="8">Purple</option>
+								<option class="abu" value="9">Grey</option>
+								<option class="putih" value="10">White</option>
+								<option class="emas" value="11">Gold</option>
+								<option class="perak" value="12">Silver</option>
+							</select>
+						</div>
+ 					</div>
+ 					<div class="form-group">
+ 						<label class="control-label col-sm-6" for="warna4" id="pitaWarna4">4<sup>th</sup> Band Color</label>
+ 						<div class="col-sm-4">
+							<select class="form-control" id="warna4" name="pita4">
+								<option class="putih" value="0">- Choose Color -</option>
+								<option class="coklat" value="2">Brown</option>
+								<option class="merah" value="3">Red</option>
+								<option class="hijau" value="6">Green</option>
+								<option class="biru" value="7">Blue</option>
+								<option class="ungu" value="8">Purple</option>
+								<option class="abu" value="9">Grey</option>
+								<option class="emas" value="11">Gold</option>
+								<option class="perak" value="12">Silver</option>
+								<option class="nocolor" value="13">No Color</option>
+							</select>
+						</div>
+ 					</div>
+ 					<div id="enam" class="collapse">
+ 						<div class="form-group">
+							<label  class="control-label col-sm-6" for="warna6">6<sup>th</sup> Band Color</label>
+							<div class="col-sm-4">
+								<select class="form-control" id="warna6" name="pita6" >
+									<option class="putih" value="0">- Choose Color -</option>
+									<option class="hitam" value="1">Black</option>
+									<option class="coklat" value="2">Brown</option>
+									<option class="merah" value="3">Red</option>
+									<option class="orange" value="4">Orange</option>
+									<option class="kuning" value="5">Yellow</option>
+									<option class="hijau" value="6">Green</option>
+									<option class="biru" value="7">Blue</option>
+									<option class="ungu" value="8">Purple</option>
+									<option class="putih" value="10">White</option>
+								</select>
+							</div>
+						</div>	
+ 					</div>
+    			</form>
+  			</div>
+  			<div id="b" class="tab-pane fade">
+    			<h3 class="text-center">Find color from resistance value</h3>
+    			<form class="form-horizontal">
+    				<div class="form-group">
+    					<label class="control-label col-sm-6" for="tahanan">Resistance Value (&#8486)</label>
+    					<div class="col-sm-4">
+    						<input type="text" id="tahanan" placeholder="Mis. 2r3, 200, 2k, 4k7" class="form-control" />
+    					</div>
+    				</div>
+    				<div class="form-group">
+    					<label class="control-label col-sm-6" for="toleransi">Tolerance</label>
+    					<div class="col-sm-4">
+    						<select name="toleransi" id="toleransi" class="form-control" >
+								<option value="0">- Choose Tolerance -</option>
+								<option value="1">&plusmn; 1 &#37</option>
+								<option value="2">&plusmn; 2 &#37</option>
+								<option value="0.5">&plusmn; 0,5 &#37</option>
+								<option value="0.25">&plusmn; 0,25 &#37</option>
+								<option value="0.1">&plusmn; 0,1 &#37</option>
+								<option value="0.05">&plusmn; 0,05 &#37</option>
+								<option value="5">&plusmn; 5 &#37</option>
+								<option value="10">&plusmn; 10 &#37</option>
+								<option value="20">&plusmn; 20 &#37</option>
+							</select>
+    					</div>
+    				</div>
+    				<div class="form-group">
+    					<label class="control-label col-sm-6" for="koefisien">Temperature Coefficient</label>
+    					<div class="col-sm-4">
+    						<select name="koefisien" id="koefisien" class="form-control" >
+								<option value="0">- Choose Coefficient -</option>
+								<option value="250">250 ppm/&#176;C</option>
+								<option value="100">100 ppm/&#176;C</option>
+								<option value="50">50 ppm/&#176;C</option>
+								<option value="15">15 ppm/&#176;C</option>
+								<option value="25">25 ppm/&#176;C</option>
+								<option value="20">20 ppm/&#176;C</option>
+								<option value="10">10 ppm/&#176;C</option>
+								<option value="5">5 ppm/&#176;C</option>
+								<option value="1">1 ppm/&#176;C</option>
+							</select>
+    					</div>
+    				</div>
+    			</form>
+  			</div>
+		</div>
+		<div class="well text-center">
+			<div class="row">
+				<div class="col-sm-6">
+					<h4>Result</h4>
+					<b id="hasil">Resistance Value 0 &#8486,<br> Tolerance 0 &#37</b>
+				</div>
+				<div class="col-sm-6">
+					<h4>Diagram</h4>
+					<div id="resistor">
+						<div class="garis1"></div>
+						<div id="box">
+							<div class="kosong"></div>
+							<div id="pita1"></div>
+							<div class="kosong"></div>
+							<div id="pita2"></div>
+							<div class="kosong"></div>
+							<div id="pita5"></div>
+							<div id="kosong3"></div>
+							<div id="pita3"></div>
+							<div class="kosong2"></div>
+							<div id="pita4"></div>
+							<div class="kosong"></div>
+							<div id="pita6"></div>
+							<div id="kosong4"></div>
+						</div>
+						<div class="garis2"></div>
+					</div>
+				</div>
+			</div>			
+		</div>
+	</div>
+	<div class="col-sm-2"></div>
+</div>
+<footer class="container-fluid text-center">Copyright <span class="glyphicon glyphicon-copyright-mark"></span> 2017 KEW</footer>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js" type="text/javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script type="text/javascript" src="resistor.js"></script>
 </body>
 </html>

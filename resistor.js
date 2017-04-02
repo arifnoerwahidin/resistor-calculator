@@ -1,19 +1,16 @@
-var pilih, ring, ring1, ring2, ring3, ring4, ring5, ring6, itung, jumlahPita = 4;
-var cincin1 = ["0", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var cincin2 = cincin1;
+var jumlahPita = 4;
 var cincin3 = [0, 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000, 0.1, 0.01];
 var cincin4 = {0:0, 2:1, 3:2, 6:0.5, 7:0.25, 8:0.1, 9:0.05, 11:5, 12:10, 13:20};
-var cincin5 = cincin1;
-var cincin6 = {0:"0", 1:"250", 2:"100", 3:"50", 4:"15", 5:"25", 6:"20", 7:"10", 8:"5", 10:"1"};
-var tahanan, toleransi, koefisien;
 
-Object.prototype.getKeyByValue = function( value ) {
-    for( var prop in this ) {
-        if( this.hasOwnProperty( prop ) ) {
-             if( this[ prop ] === value )
-                 return prop;
-        }
-    }
+function getKeyByValue(arr, val) {
+	var hasil;
+	$.each(arr, function( index, value ) {
+		if(value == val) {
+			hasil = index;
+			return false;
+		}
+	});
+	return hasil;
 }
 
 function getDigits(num) {
@@ -26,13 +23,14 @@ function getDigits(num) {
     return digits;
 }
 
-function reverse() {
-	reset();
-	var angka, notasi, pengali, belakangKoma;
+function balik() {
+	var angka, notasi, pengali, belakangKoma, tahanan, toleransi, koefisien;
+	kembali();
 	//ambil data input START
-	tahanan = document.getElementById("tahanan").value;
-	toleransi = document.getElementById("toleransi").value;
-	koefisien = document.getElementById("koefisien").value;
+	tahanan = $("#tahanan").val();
+	toleransi = $("#toleransi").val();
+	koefisien = $("#koefisien").val();
+	if(!tahanan) {return false} //menghalangi kalau input kosong
 	//ambil data input END
 	var AngkaTokNonArray = tahanan.match(/[^k;m;r;\,; ]+|[0-9]+/gi); //ambil angka saja tapi tidak dalam array
 	if (tahanan.match(/[\,;\.]+/gi)) { //ada koma
@@ -70,39 +68,28 @@ function reverse() {
 	var angkaneTok = angka.match(/[^k;m;r;\,; ]|[1-9]+/gi); //ambil angkanya saja, tanpa huruf dalam array
 	//Proses pita 1, 2, dan 3 ,6(dalam resistor 5 pita) START
 	if (angkaneTok.length == 1) { //jika angkanya cuma 1 digit
-		document.getElementById("4").checked = true;
-		jumlahPita = 4;
-		radioKlik();
-		document.getElementById("warna1").selectedIndex = 1;
-		document.getElementById("warna2").selectedIndex = Number(angkaneTok[0]) + 1;
+		$("#4").prop("checked", true).change();
+		$("#warna1").val(1);
+		$("#warna2").val(Number(angkaneTok[0]) + 1);
 	} else if (angkaneTok.length == 2) { //jika angkanya 2 digit
-		document.getElementById("4").checked = true;
-		jumlahPita = 4;
-		radioKlik();
-		document.getElementById("warna1").selectedIndex = Number(angkaneTok[0]) + 1;
-		document.getElementById("warna2").selectedIndex = Number(angkaneTok[1]) + 1;
+		$("#4").prop("checked", true).change();
+		$("#warna1").val(Number(angkaneTok[0]) + 1);
+		$("#warna2").val(Number(angkaneTok[1]) + 1);
 	} else if (angkaneTok.length == 3 && koefisien == 0) { //jika angkanya 3 digit
-		document.getElementById("5").checked = true;
-		jumlahPita = 5;
-		radioKlik();
-		document.getElementById("warna1").selectedIndex = Number(angkaneTok[0]) + 1;
-		document.getElementById("warna2").selectedIndex = Number(angkaneTok[1]) + 1;
-		document.getElementById("warna5").selectedIndex = Number(angkaneTok[2]) + 1;
+		$("#5").prop("checked", true).change();
+		$("#warna1").val(Number(angkaneTok[0]) + 1);
+		$("#warna2").val(Number(angkaneTok[1]) + 1);
+		$("#warna5").val(Number(angkaneTok[2]) + 1);
 	} else if(angkaneTok.length == 3 && koefisien != 0) { //jika angkanya 3 digit dan koefisien ada nilainya
-		document.getElementById("6").checked = true;
-		jumlahPita = 6;
-		radioKlik();
-		document.getElementById("warna1").selectedIndex = Number(angkaneTok[0]) + 1;
-		document.getElementById("warna2").selectedIndex = Number(angkaneTok[1]) + 1;
-		document.getElementById("warna5").selectedIndex = Number(angkaneTok[2]) + 1;
+		$("#6").prop("checked", true).change();
+		$("#warna1").val(Number(angkaneTok[0]) + 1);
+		$("#warna2").val(Number(angkaneTok[1]) + 1);
+		$("#warna5").val(Number(angkaneTok[2]) + 1);
 		var enam = ["0", "250", "100", "50", "15", "25", "20", "10", "5", "1"];
-		document.getElementById("warna6").selectedIndex = enam.getKeyByValue(koefisien);
+		$("#warna6").val(getKeyByValue(enam, koefisien));
 	}
 	//Agar warna pita 1,2,3,6 berubah
-	this["warna1"].onchange();
-	this["warna2"].onchange();
-	this["warna5"].onchange();
-	this["warna6"].onchange();
+	$("#warna1, #warna2, #warna5, #warna6").change();
 	//Proses pita 1, 2, dan 3, 6(dalam resistor 5 pita) END
 	//Proses pita pengali START
 	var hurufPengali = tahanan.match(/[k;m]+/i); //ambil huruf pengali K atau M
@@ -114,28 +101,28 @@ function reverse() {
 		pengali = 1;
 	}
 	var multiplier = notasi * pengali;
-	document.getElementById("warna3").selectedIndex = cincin3.getKeyByValue(multiplier);
-	this["warna3"].onchange();
+	$("#warna3").val(getKeyByValue(cincin3, multiplier)).change();
 	//Proses pita pengali END
 	//Proses pita toleransi START
-	var empat = ["0", "1", "2", "0.5", "0.25", "0.1", "0.05", "5", "10", "20"];
-	document.getElementById("warna4").selectedIndex = empat.getKeyByValue(toleransi);
-	this["warna4"].onchange();
+	$("#warna4").val(getKeyByValue(cincin4, toleransi)).change();
 	//Proses pita toleransi END
 }
 
 function hitung() {
 	var koef = "";
-	ring1 = document.getElementById("warna1").value;
-	ring2 = document.getElementById("warna2").value;
-	ring3 = document.getElementById("warna3").value;
-	ring4 = document.getElementById("warna4").value;
-	ring5 = document.getElementById("warna5").value;
-	ring6 = document.getElementById("warna6").value;
+	var itung, hasil;
+	var ring1 = $("#warna1").val();
+	var ring2 = $("#warna2").val();
+	var ring3 = $("#warna3").val();
+	var ring4 = $("#warna4").val();
+	var ring5 = $("#warna5").val();
+	var ring6 = $("#warna6").val();
+	var cincin1 = ["0", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+	var cincin6 = {0:"0", 1:"250", 2:"100", 3:"50", 4:"15", 5:"25", 6:"20", 7:"10", 8:"5", 10:"1"};
 	if (jumlahPita == 5 || jumlahPita == 6) {
-		itung = ((cincin1[ring1]+cincin2[ring2]+cincin5[ring5])*cincin3[ring3]).toFixed(2);
+		itung = ((cincin1[ring1]+cincin1[ring2]+cincin1[ring5])*cincin3[ring3]).toFixed(2);
 	} else if (jumlahPita == 4) {
-		itung = ((cincin1[ring1]+cincin2[ring2])*cincin3[ring3]).toFixed(2);
+		itung = ((cincin1[ring1]+cincin1[ring2])*cincin3[ring3]).toFixed(2);
 	}
 	if (itung>=1000 && itung<1000000) {
 		hasil = itung/1000 +" K &#8486";
@@ -147,90 +134,69 @@ function hitung() {
 		hasil = itung +" &#8486";
 	}
 	if (jumlahPita == 6) {
-		koef = ", Koefisien suhu "+cincin6[ring6]+" ppm/&#176;C"; }
-	document.getElementById("hasil").innerHTML = "<b>Nilai Hambatan = " +hasil+", Toleransi &plusmn; "+cincin4[ring4]+" &#37"+koef+"</b>";
+		koef = ",<br> Temperature Coefficient "+cincin6[ring6]+" ppm/&#176;C"; 
+	}
+	$("#hasil").html("<b>Resistance Value " +hasil+", <br>Tolerance &plusmn; "+cincin4[ring4]+" &#37"+koef+"</b>");
 }
 
-function gantiWarna(pilih) {
-	var pita, tulisan;
-	var warnane = ["white", "black", "brown", "red", "orange", "yellow", "green", "blue", "purple", "grey", "white", "gold", "silver", "nocolor"];
-	ring = warnane[pilih.value];
-	if (ring == "nocolor" || ring == "nol") {
-		pita = "white";
-	}
-	else {
-		pita = ring;
-	}
-	if (pita == "orange" || pita == "yellow" || pita == "white" || pita == "nocolor" || pita == "gold" || pita == "silver") {
-		tulisan = "black"; }
-	else { 
-		tulisan = "white"; }
-	document.getElementById(pilih.name).style.background = pita;
-	document.getElementById(pilih.id).style.backgroundColor = pita;
-	document.getElementById(pilih.id).style.color = tulisan;
+function kembali() {
+	$("#a select").each(function(){
+		$(this).val("0").css("background-color", "white").css("color", "black").change();
+	});
+  	$("#pita1, #pita2, #pita3, #pita4, #pita5, #pita6").css("background", "transparent");
 }
 
-function radioKlik(radio) {
-	if (radio != undefined) {
-   	jumlahPita = radio.value;
-   	}
-   	reset();
-	if (jumlahPita == 5) {
-    	document.getElementById("lima").className = "fadein";
-    	document.getElementById("enam").className = "fadeout";
-    	document.getElementById("pitaWarna3").innerHTML = "Cincin 4";
-    	document.getElementById("pitaWarna4").innerHTML = "Cincin 5";
-    	document.getElementById("box").style.width = "120px";
-    	document.getElementById("resistor").style.width = "270px";
-    	document.getElementById("pita5").style.width = "10px";
-    	document.getElementById("kosong3").style.width = "10px";
-    	document.getElementById("pita6").style.width = "0px";
-    	document.getElementById("kosong4").style.width = "0px";
-	}
-	else if (jumlahPita == 4) {
-	   	document.getElementById("lima").className = "fadeout";
-	   	document.getElementById("enam").className = "fadeout";
-		document.getElementById("pitaWarna3").innerHTML = "Cincin 3";
-    	document.getElementById("pitaWarna4").innerHTML = "Cincin 4";
-    	document.getElementById("box").style.width = "100px";
-    	document.getElementById("resistor").style.width = "250px";
-    	document.getElementById("pita5").style.width = "0px";
-    	document.getElementById("kosong3").style.width = "0px";
-    	document.getElementById("pita6").style.width = "0px";
-    	document.getElementById("kosong4").style.width = "0px";
-    }
-    else if (jumlahPita == 6) {
-	   	document.getElementById("enam").className = "fadein";
-	   	document.getElementById("lima").className = "fadein";
-		document.getElementById("pitaWarna3").innerHTML = "Cincin 4";
-    	document.getElementById("pitaWarna4").innerHTML = "Cincin 5";
-    	document.getElementById("box").style.width = "140px";
-    	document.getElementById("resistor").style.width = "290px";
-    	document.getElementById("pita5").style.width = "10px";
-    	document.getElementById("kosong3").style.width = "10px";
-    	document.getElementById("pita6").style.width = "10px";
-    	document.getElementById("kosong4").style.width = "10px";
-    }
-    hitung();
-}
+$(document).ready(function(){
+	$("input[name='jumlahPita']:radio").change(function(){
+   		jumlahPita = $(this).val();
+   		kembali();
+		if (jumlahPita == 5) {
+	    	$("#lima").collapse("show");
+    		$("#enam").collapse("hide");
+    		$("#pitaWarna3").html("4<sup>th</sup> Band Color");
+    		$("#pitaWarna4").html("5<sup>th</sup> Band Color");
+    		$("#box").css("width", "120px");
+    		$("#resistor").css("width", "270px");
+    		$("#pita5, #kosong3").css("width", "10px");
+    		$("#pita6, #kosong4").css("width", "0px");
+		}
+		else if (jumlahPita == 4) {
+		   	$("#lima, #enam").collapse("hide");
+			$("#pitaWarna3").html("3<sup>rd</sup> Band Color");
+    		$("#pitaWarna4").html("4<sup>th</sup> Band Color");
+    		$("#box").css("width", "100px");
+    		$("#resistor").css("width", "250px");
+    		$("#pita5, #kosong3, #pita6, #kosong4").css("width", "0px");
+    	}
+    	else if (jumlahPita == 6) {
+		   	$("#enam, #lima").collapse("show");
+			$("#pitaWarna3").html("4<sup>th</sup> Band Color");
+    		$("#pitaWarna4").html("5<sup>th</sup> Band Color");
+    		$("#box").css("width", "140px");
+    		$("#resistor").css("width", "290px");
+    		$("#pita5, #kosong3, #pita6, #kosong4").css("width", "10px");
+    	}
+    	hitung();
+	});
 
-function reset() {
-  	for (var i = 1; i < 7; i++) 
-	{
-   		document.getElementById("warna"+i).selectedIndex = 0;
-   		document.getElementById("pita"+i).style.background = "white";
-		document.getElementById("warna"+i).style.backgroundColor = "white";
-		document.getElementById("warna"+i).style.color = "black";
-		this["warna"+i].onchange();
-	}
-}
+	$("#a select").change(function(){
+		var pita, tulisan, ring;
+		var isi = $(this).val();
+		var name = $(this).attr("name");
+		var id = $(this).attr("id");
+		var warnane = ["white", "black", "brown", "red", "orange", "yellow", "green", "blue", "purple", "grey", "white", "gold", "silver", "nocolor"];
+		ring = warnane[isi];
+		pita = (ring == "nocolor" || ring == "nol") ? "white" : ring;
+		tulisan = (pita == "orange" || pita == "yellow" || pita == "white" || pita == "nocolor" || pita == "gold" || pita == "silver") ? "black" : "white";
+		$("#"+name).css("background", pita);
+		$("#"+id).css("background-color", pita).css("color", tulisan);
+		hitung();
+	});
 
-function gambarMetu() {
-	var y = document.getElementById("gambar").className;
-	if (y == "imgout") {
-		document.getElementById("gambar").className = "imgin";
-	}
-	else {
-		document.getElementById("gambar").className = "imgout";
-	}
-}
+	$("#tahanan").keyup(function(){
+		balik();
+	});
+	$("#b select").change(function(){
+		balik();
+	});
+});
